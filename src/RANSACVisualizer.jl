@@ -1,0 +1,3 @@
+module RANSACVisualizer
+
+end # module
