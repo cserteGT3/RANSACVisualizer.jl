@@ -6,5 +6,3 @@
 ![Lifecycle](https://img.shields.io/badge/lifecycle-retired-orange.svg)
 ![Lifecycle](https://img.shields.io/badge/lifecycle-archived-red.svg)
 ![Lifecycle](https://img.shields.io/badge/lifecycle-dormant-blue.svg) -->
-[![Build Status](https://travis-ci.com/cserteGT3/RANSACVisualizer.jl.svg?branch=master)](https://travis-ci.com/cserteGT3/RANSACVisualizer.jl)
-[![codecov.io](http://codecov.io/github/cserteGT3/RANSACVisualizer.jl/coverage.svg?branch=master)](http://codecov.io/github/cserteGT3/RANSACVisualizer.jl?branch=master)
