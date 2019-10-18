@@ -7,14 +7,14 @@ function showgeometry(vs::Array{SVector{3,F},1}, ns::Array{SVector{3,F},1}; arro
     plns = normalsforplot(vs, ns, arrow)
     scene = scatter(vs)
     linesegments!(scene, plns, color = :blue)
+    cam3d!(scene)
+    scene
 end
 
 function showgeometry(vs, ns; arrow = 0.5)
     vsn = [SVector{3}(i) for i in vs]
     nsn = [SVector{3}(i) for i in ns]
-    plns = normalsforplot(vsn, nsn, arrow)
-    scene = scatter(vsn)
-    linesegments!(scene, plns, color = :blue)
+    showgeometry(vsn, nsn, arrow=arrow)
 end
 
 function showcandlength(ck)
