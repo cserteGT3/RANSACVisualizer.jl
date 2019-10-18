@@ -3,10 +3,18 @@
 
 Show pointcloud with normals.
 """
+function showgeometry(vs::Array{SVector{3,F},1}, ns::Array{SVector{3,F},1}; arrow = 0.5) where F
+    plns = normalsforplot(vs, ns, arrow)
+    scene = scatter(vs)
+    linesegments!(scene, plns, color = :blue)
+end
+
 function showgeometry(vs, ns; arrow = 0.5)
-        plns = normalsforplot(vs, ns, arrow)
-        scene = scatter(vs)
-        linesegments!(scene, plns, color = :blue)
+    vsn = [SVector{3}(i) for i in vs]
+    nsn = [SVector{3}(i) for i in ns]
+    plns = normalsforplot(vsn, nsn, arrow)
+    scene = scatter(vsn)
+    linesegments!(scene, plns, color = :blue)
 end
 
 function showcandlength(ck)

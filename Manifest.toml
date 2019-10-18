@@ -231,9 +231,9 @@ version = "0.3.0"
 
 [[FFTW]]
 deps = ["AbstractFFTs", "BinaryProvider", "Conda", "Libdl", "LinearAlgebra", "Reexport", "Test"]
-git-tree-sha1 = "e1a479d3c972f20c9a70563eec740bbfc786f515"
+git-tree-sha1 = "6c5b420da0b8c12098048561b8d58f81adea506f"
 uuid = "7a1cc6ca-52ef-59f5-83cd-3a7055c09341"
-version = "0.3.0"
+version = "1.0.1"
 
 [[FileIO]]
 deps = ["Pkg"]
@@ -243,9 +243,9 @@ version = "1.0.7"
 
 [[FillArrays]]
 deps = ["LinearAlgebra", "Random", "SparseArrays"]
-git-tree-sha1 = "16974065d5bfa867446d3228bc63f05a440e910b"
+git-tree-sha1 = "a2e22cd210dfa3ad1e1e6291fb733741dfabcc9f"
 uuid = "1a297f60-69ca-5386-bcde-b61e274b549b"
-version = "0.7.2"
+version = "0.7.3"
 
 [[FixedPointNumbers]]
 git-tree-sha1 = "d14a6fa5890ea3a7e5dcab6811114f132fec2b4b"
@@ -596,10 +596,8 @@ uuid = "1fd47b50-473d-5c70-9696-f719f8f3bcdc"
 version = "2.0.3"
 
 [[RANSAC]]
-deps = ["AbstractPlotting", "GeometryTypes", "Images", "LinearAlgebra", "Logging", "Makie", "Parameters", "Random", "RegionTrees", "StaticArrays"]
-git-tree-sha1 = "064c60eef0b0704601e37ab3126f4163e9680091"
-repo-rev = "master"
-repo-url = "https://github.com/cserteGT3/RANSAC.jl"
+deps = ["Images", "LinearAlgebra", "Logging", "Parameters", "Random", "RegionTrees", "StaticArrays"]
+path = "C:\\Users\\cstamas\\.julia\\dev\\RANSAC"
 uuid = "d6bc97e0-a563-11e9-1861-c573f65f3bc3"
 version = "0.1.0"
 
@@ -707,9 +705,9 @@ version = "0.7.2"
 
 [[StaticArrays]]
 deps = ["LinearAlgebra", "Random", "Statistics"]
-git-tree-sha1 = "db23bbf50064c582b6f2b9b043c8e7e98ea8c0c6"
+git-tree-sha1 = "1085ffbf5fd48fdba64ef8e902ca429c4e1212d3"
 uuid = "90137ffa-7385-5640-81b9-e52037218182"
-version = "0.11.0"
+version = "0.11.1"
 
 [[Statistics]]
 deps = ["LinearAlgebra", "SparseArrays"]
