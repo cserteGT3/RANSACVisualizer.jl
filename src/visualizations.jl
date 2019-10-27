@@ -12,8 +12,8 @@ function showgeometry(vs::Array{SVector{3,F},1}, ns::Array{SVector{3,F},1}; arro
 end
 
 function showgeometry(vs, ns; arrow = 0.5)
-    vsn = [SVector{3}(i) for i in vs]
-    nsn = [SVector{3}(i) for i in ns]
+    vsn = [SVector{3, Float64}(i) for i in vs]
+    nsn = [SVector{3, Float64}(i) for i in ns]
     showgeometry(vsn, nsn, arrow=arrow)
 end
 
