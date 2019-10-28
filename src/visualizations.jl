@@ -76,7 +76,7 @@ end
 function plotshape!(sc, shape::FittedPlane; scale=(1.,1.), color=(:blue, 0.1))
     # see project2plane
     o_z = normalize(shape.normal)
-    o_x = normalize(arbitrary_orthogonal(o_z))
+    o_x = normalize(arbitrary_orthogonal2(o_z))
     o_y = normalize(cross(o_z, o_x))
 
     p1 = shape.point
@@ -103,4 +103,24 @@ function shiftplane!(sc, p::FittedPlane, dist; kwargs...)
     newo = p.point+dist*normalize(p.normal)
     newp = FittedPlane(true, newo, p.normal)
     plotshape!(sc, newp; kwargs...)
+end
+
+function plotimplshape!(sc, shape::ImplicitPlane; scale=(1.,1.), color=(:blue, 0.1))
+    fp = FittedPlane(true, shape.point, shape.normal)
+    plotshape!(sc, fp; scale=scale, color=color)
+end
+
+function plotimplshape!(sc, shape::ImplicitSphere; scale=(1.,1.), color=(:blue, 0.1))
+    fs = FittedSphere(true, shape.center, shape.radius, true)
+    plotshape!(sc, fs; scale=scale, color=color)
+end
+
+function plotimplshape!(sc, shape::ImplicitCylinder; scale=(1.,1.), color=(:blue, 0.1))
+    fc = FittedCylinder(true, shape.axis, shape.center, shape.radius, true)
+    plotshape!(sc, fc; scale=scale, color=color)
+end
+
+function plotimplshape(shape::CSGBuilding.AbstractImplicitSurface; scale=(1.,1.), color=(:blue, 0.1))
+    s = Scene()
+    plotimplshape!(s, shape; scale=scale, color=color)
 end

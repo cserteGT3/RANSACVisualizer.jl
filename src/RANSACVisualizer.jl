@@ -9,6 +9,7 @@ using Makie: mesh!, cam3d!, Sphere, Point
 using GeometryTypes: Cylinder
 using RANSAC
 using StaticArrays
+using CSGBuilding
 
 export  showgeometry,
         showcandlength,
@@ -17,7 +18,9 @@ export  showgeometry,
         showtype,
         showbytype,
         plotshape,
-        plotshape!
+        plotshape!,
+        plotimplshape,
+        plotimplshape!
 
 include("visualizations.jl")
 
