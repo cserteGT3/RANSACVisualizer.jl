@@ -25,7 +25,8 @@ end
 
 function showshapes!(s, pointcloud, candidateA; kwargs...)
     colscheme = ColorSchemes.gnuplot
-    colA = get.(Ref(colscheme), range(0, stop=1, length=size(candidateA,1)))
+    colA = get.(Ref(colscheme), range(0, stop=1, length=(size(candidateA,1)+1)))
+    colA = deleteat!(colA, 1)
     for i in 1:length(candidateA)
         ind = candidateA[i].inpoints
         scatter!(s, pointcloud.vertices[ind], color = colA[i]; kwargs...)
