@@ -10,17 +10,21 @@ using GeometryTypes: Cylinder
 using RANSAC
 using StaticArrays
 using CSGBuilding
+using ColorSchemes
 
 export  showgeometry,
         showcandlength,
         showshapes,
+        showshapes!,
         getrest,
         showtype,
         showbytype,
+        showbytype!,
         plotshape,
         plotshape!,
         plotimplshape,
-        plotimplshape!
+        plotimplshape!,
+        givelargest
 
 include("visualizations.jl")
 

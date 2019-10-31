@@ -23,19 +23,19 @@ function showcandlength(ck)
     end
 end
 
-function showshapes(s, pointcloud, candidateA)
-    colA = [:blue, :black, :darkred, :green, :brown, :yellow, :orange, :lightsalmon1, :goldenrod4, :olivedrab2, :indigo, :lightgreen, :darkorange1, :green2]
-    @assert length(candidateA) <= length(colA) "Not enough color in colorarray. Fix it manually. :/"
+function showshapes!(s, pointcloud, candidateA; kwargs...)
+    colscheme = ColorSchemes.gnuplot
+    colA = get.(Ref(colscheme), range(0, stop=1, length=size(candidateA,1)))
     for i in 1:length(candidateA)
         ind = candidateA[i].inpoints
-        scatter!(s, pointcloud.vertices[ind], color = colA[i])
+        scatter!(s, pointcloud.vertices[ind], color = colA[i]; kwargs...)
     end
     s
 end
 
-function showshapes(pointcloud, candidateA)
+function showshapes(pointcloud, candidateA; kwargs...)
     sc = Scene()
-    showshapes(sc, pointcloud, candidateA)
+    showshapes!(sc, pointcloud, candidateA; kwargs...)
 end
 
 function getrest(pc)
@@ -49,7 +49,7 @@ function showtype(l)
     end
 end
 
-function showbytype(s, pointcloud, candidateA)
+function showbytype!(s, pointcloud, candidateA; kwargs...)
     for c in candidateA
         ind = c.inpoints
         if c.candidate.shape isa FittedCylinder
@@ -59,14 +59,14 @@ function showbytype(s, pointcloud, candidateA)
         elseif c.candidate.shape isa FittedPlane
             colour = :orange
         end
-        scatter!(s, pointcloud.vertices[ind], color = colour)
+        scatter!(s, pointcloud.vertices[ind], color = colour; kwargs...)
     end
     s
 end
 
-function showbytype(pointcloud, candidateA)
+function showbytype(pointcloud, candidateA; kwargs...)
     sc = Scene()
-    showbytype(sc, pointcloud, candidateA)
+    showbytype!(sc, pointcloud, candidateA; kwargs...)
 end
 
 function plotshape(shape::FittedShape; kwargs...)
@@ -123,4 +123,11 @@ end
 function plotimplshape(shape::CSGBuilding.AbstractImplicitSurface; scale=(1.,1.), color=(:blue, 0.1))
     s = Scene()
     plotimplshape!(s, shape; scale=scale, color=color)
+end
+
+function givelargest(scoredshapes)
+    sizes = [size(s.inpoints, 1) for s in scoredshapes]
+    mind = argmax(sizes)
+    println("Best: $mind. - $(scoredshapes[mind])")
+    return scoredshapes[mind]
 end
