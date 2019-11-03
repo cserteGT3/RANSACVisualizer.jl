@@ -20,6 +20,7 @@ using GeometryTypes
 using Reactive
 
 export  showgeometry,
+        showgeometry!,
         showcandlength,
         showshapes,
         showshapes!,

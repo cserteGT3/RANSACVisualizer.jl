@@ -1,20 +1,25 @@
 """
-    showgeometry(scene, vs, ns; arrow = 0.5)
+    showgeometry!(scene, vs, ns; arrow = 0.5)
 
 Show pointcloud with normals.
 """
-function showgeometry(vs::Array{SVector{3,F},1}, ns::Array{SVector{3,F},1}; arrow = 0.5) where F
+function showgeometry!(scene, vs::Array{SVector{3,F},1}, ns::Array{SVector{3,F},1}; arrow = 0.5) where F
     plns = normalsforplot(vs, ns, arrow)
-    scene = scatter(vs)
+    scatter!(scene, vs)
     linesegments!(scene, plns, color = :blue)
     cam3d!(scene)
     scene
 end
 
-function showgeometry(vs, ns; arrow = 0.5)
+function showgeometry!(scene, vs, ns; arrow = 0.5)
     vsn = [SVector{3, Float64}(i) for i in vs]
     nsn = [SVector{3, Float64}(i) for i in ns]
-    showgeometry(vsn, nsn, arrow=arrow)
+    showgeometry(scene, vsn, nsn, arrow=arrow)
+end
+
+function showgeometry(vs, ns; arrow=0.5)
+    s = Scene()
+    showgeometry!(s, vs, ns, arrow=arrow)
 end
 
 function showcandlength(ck)
