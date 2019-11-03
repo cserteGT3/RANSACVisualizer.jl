@@ -12,6 +12,13 @@ using StaticArrays
 using CSGBuilding
 using ColorSchemes
 
+# for cone
+using Makie
+# using AbstractPlotting
+# using FileIO
+using GeometryTypes
+using Reactive
+
 export  showgeometry,
         showcandlength,
         showshapes,
@@ -26,6 +33,9 @@ export  showgeometry,
         plotimplshape!,
         givelargest
 
+export  ConeMesh
+
 include("visualizations.jl")
+include("cone3.jl")
 
 end # module
