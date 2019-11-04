@@ -64,6 +64,8 @@ function showbytype!(s, pointcloud, candidateA; kwargs...)
             colour = :green
         elseif c.candidate.shape isa FittedPlane
             colour = :orange
+        elseif c.candidate.shape isa FittedCone
+            colour = :blue
         end
         scatter!(s, pointcloud.vertices[ind], color = colour; kwargs...)
     end
