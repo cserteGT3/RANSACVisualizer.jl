@@ -56,20 +56,32 @@ function showtype(l)
 end
 
 function showbytype!(s, pointcloud, candidateA; kwargs...)
-    for c in candidateA
+    colors_ = []
+    texts_ = []
+    for i in eachindex(candidateA)
+        c = candidateA[i]
         ind = c.inpoints
         if c.candidate.shape isa FittedCylinder
             colour = :red
+            push!(colors_, :red)
+            push!(texts_, "cylinder")
         elseif c.candidate.shape isa FittedSphere
             colour = :green
+            push!(colors_, :green)
+            push!(texts_, "sphere")
         elseif c.candidate.shape isa FittedPlane
             colour = :orange
+            push!(colors_, :orange)
+            push!(texts_, "plane")
         elseif c.candidate.shape isa FittedCone
             colour = :blue
+            push!(colors_, :blue)
+            push!(texts_, "cone")
         end
         scatter!(s, pointcloud.vertices[ind], color = colour; kwargs...)
     end
-    s
+    sl = legend(s.plots[2:end], texts_)
+    vbox(s, sl)
 end
 
 function showbytype(pointcloud, candidateA; kwargs...)

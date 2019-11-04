@@ -2,7 +2,7 @@ module RANSACVisualizer
 
 using LinearAlgebra
 
-using AbstractPlotting: Point3f0
+using AbstractPlotting: Point3f0, legend
 using AbstractPlotting
 using Makie: scatter, linesegments!, Scene, scatter!
 using Makie: mesh!, cam3d!, Sphere, Point
