@@ -19,6 +19,14 @@ using Makie
 using GeometryTypes
 using Reactive
 
+# for raytracer
+#using ImageView
+using Images
+using ColorVectorSpace
+using Colors
+#using Dates
+using SignedDistanceFields
+
 export  showgeometry,
         showgeometry!,
         showcandlength,
@@ -36,7 +44,16 @@ export  showgeometry,
 
 export  ConeMesh
 
+export  AbstractCamera,
+        IsometricCamera,
+        PinholeCamera,
+        RayResults,
+        raymarch,
+        los
+
 include("visualizations.jl")
 include("cone3.jl")
+include("raytracer/raymarching.jl")
+include("raytracer/camera.jl");
 
 end # module
