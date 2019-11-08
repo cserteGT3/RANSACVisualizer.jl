@@ -16,7 +16,7 @@ function Base.zero(R::Type{RayResults})
     zero(Float64),zero(space),zero(Float64),zero(Float64),zero(RGB))
 end
 
-function raymarch(Pos::space,Normal::space,SF,renderlim::Float64)
+function raymarch(Pos::space, Normal::space, SF, renderlim::Float64)
     Step=1.0;
     Start=Pos;
     Strecke=0.0;
@@ -36,4 +36,31 @@ function raymarch(Pos::space,Normal::space,SF,renderlim::Float64)
     SF(Pos+space(0.0,Step,0.0))[1]-Step,
     SF(Pos+space(0.0,0.0,Step))[1]-Step)) ##Assumes 3D FIX
     ,Shd,Step,Pos,Strecke,renderlim,zero(RGB))
+end
+
+function raymarch(Pos::space, Normal::space, node::CSGNode, renderlim::Float64)
+    Step=1.0;
+    Start=Pos;
+    Strecke=0.0;
+    Shd = Shd_Id(0)
+    while (Step > 0.001)
+        temp = evalshadered(node, Pos, 2)
+        Step = temp[1];
+        Shd = temp[2]
+        Pos+=Normal*Step;
+        Strecke+=Step
+        if Strecke > renderlim
+            return RayResults(Pos,Normal,zero(space),Shd_Id(1),Step,Pos,Strecke,renderlim,zero(RGB))
+        end
+    end
+    RayResults(Pos,Normal,
+    normalize(space(SF(Pos+space(Step,0.0,0.0))[1]-Step,
+    SF(Pos+space(0.0,Step,0.0))[1]-Step,
+    SF(Pos+space(0.0,0.0,Step))[1]-Step)) ##Assumes 3D FIX
+    ,Shd,Step,Pos,Strecke,renderlim,zero(RGB))
+end
+
+function evalshadered(node, pos, shaderind)
+    val = CSGBuilding.evaluate(node, pos)
+    return (CSGBuilding.value(val), shaderind)
 end

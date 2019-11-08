@@ -11,6 +11,7 @@ using RANSAC
 using StaticArrays
 using CSGBuilding
 using ColorSchemes
+using Parameters: @unpack
 
 # for cone
 using Makie
@@ -49,11 +50,17 @@ export  AbstractCamera,
         PinholeCamera,
         RayResults,
         raymarch,
-        los
+        los,
+        DefIsoCam,
+        DefPinCam
+
+export  render,
+        DefaultShaderArray
 
 include("visualizations.jl")
 include("cone3.jl")
 include("raytracer/raymarching.jl")
 include("raytracer/camera.jl");
+include("raytracer/render.jl");
 
 end # module

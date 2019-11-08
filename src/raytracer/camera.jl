@@ -33,3 +33,13 @@ function los(Cam::PinholeCamera,X::Int64,Y::Int64)::Tuple{space,space}
   light_passes_lens = (X-Cam.Maxx)*Cam.Sensorx+(Y-Cam.Maxy)*Cam.Sensory+Cam.Position
   (light_passes_lens,normalize(light_passes_lens-(Cam.Position-Cam.FocalLength*Cam.Direction)))
 end
+
+DefIsoCam(x, y) = IsometricCamera(space(25.0,0.0,0.0),
+                                 space(-1.0,0,0),
+                                 x/600*35*normalize(space(0.0,1.0,0.0)),
+                                 y/600*35*normalize(space(0.0,0.0,1.0)),x,y)
+
+DefPinCam(x, y) = PinholeCamera(space(25.0,0.0,0.0),
+                        space(-1.0,0,0),
+                        x/600*35*normalize(space(0.0,1.0,0.0)),
+                        y/600*35*normalize(space(0.0,0.0,1.0)),x,y,90.0)
