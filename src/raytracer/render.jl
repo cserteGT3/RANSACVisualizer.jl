@@ -1,5 +1,6 @@
 ## Max length of array is 2^16
 ## A sharder is (currenty) (subject to change due to unhandled reflections) a function that takes a RayResults struct and returns a RGB value
+# DefaultShaderArray[1] = background
 const DefaultShaderArray = [
     (x::RayResults)->RGB(0.35,0.35,0.35),
     #(x::RayResults)->(RGB(0.8,0.8,0.8)*10*SignedDistanceFields.clamp01(1/norm(x.Position))),
@@ -9,6 +10,7 @@ const DefaultShaderArray = [
     (x::RayResults)->RGB(0.796,0.235,0.2)*(abs(x.Position[1]/(5*sqrt(2)))),
     (x::RayResults)->RGB(0.35,0.35,0.55)]
 
+
 ## CSGBuilding
 
 function render!(frame, node::CSGNode, cam, x, y, shaders)
@@ -16,7 +18,7 @@ function render!(frame, node::CSGNode, cam, x, y, shaders)
         for j=1:y
             a = los(cam, i, j)
             temp = raymarch(a[1], a[2], node, 1000.0)
-            myPic[i,j] = shaders[temp.Shader](temp)
+            frame[i,j] = shaders[temp.Shader](temp)
         end
     end
     frame
