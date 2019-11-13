@@ -17,6 +17,19 @@ function showgeometry!(scene, vs, ns; arrow = 0.5)
     showgeometry(scene, vsn, nsn, arrow=arrow)
 end
 
+function showgeometry!(scene, m; arrow = 0.5)
+    plns = normalsforplot(m.vertices, m.normals, arrow)
+    scatter!(scene, m.vertices)
+    linesegments!(scene, plns, color = :blue)
+    cam3d!(scene)
+    scene
+end
+
+function showgeometry(m; arrow=0.5)
+    s = Scene()
+    showgeometry!(s, m, arrow=arrow)
+end
+
 function showgeometry(vs, ns; arrow=0.5)
     s = Scene()
     showgeometry!(s, vs, ns, arrow=arrow)
