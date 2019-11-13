@@ -18,11 +18,9 @@ function showgeometry!(scene, vs, ns; arrow = 0.5)
 end
 
 function showgeometry!(scene, m; arrow = 0.5)
-    plns = normalsforplot(m.vertices, m.normals, arrow)
-    scatter!(scene, m.vertices)
-    linesegments!(scene, plns, color = :blue)
-    cam3d!(scene)
-    scene
+    vsn = [SVector{3, Float64}(i) for i in m.vertices]
+    nsn = [SVector{3, Float64}(i) for i in m.normals]
+    showgeometry!(scene, vsn, nsn, arrow=arrow)
 end
 
 function showgeometry(m; arrow=0.5)
