@@ -4,10 +4,11 @@ using LinearAlgebra
 
 using AbstractPlotting: Point3f0, legend
 using AbstractPlotting
-using Makie: scatter, linesegments!, Scene, scatter!
+using Makie: scatter, linesegments!, Scene, scatter!, lines, arrows!
 using Makie: mesh!, cam3d!, Sphere, Point
 using GeometryTypes: Cylinder
 using RANSAC
+using RANSAC: FittedTranslational, midpoint, contournormal
 using StaticArrays
 using CSGBuilding
 using ColorSchemes
@@ -57,8 +58,11 @@ export  AbstractCamera,
 export  render,
         DefaultShaderArray
 
+export  plotcontour
+
 include("visualizations.jl")
 include("cone3.jl")
+include("translational.jl")
 include("raytracer/raymarching.jl")
 include("raytracer/camera.jl");
 include("raytracer/render.jl");
