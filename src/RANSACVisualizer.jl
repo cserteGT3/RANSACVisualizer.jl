@@ -8,7 +8,7 @@ using Makie: scatter, linesegments!, Scene, scatter!, lines, arrows!
 using Makie: mesh!, cam3d!, Sphere, Point
 using GeometryTypes: Cylinder
 using RANSAC
-using RANSAC: midpoint, contournormal, outwardsnormal
+using RANSAC: midpoint, contournormal, outwardsnormal, segmentnormal
 using StaticArrays
 using CSGBuilding
 using ColorSchemes
@@ -58,7 +58,8 @@ export  AbstractCamera,
 export  render,
         DefaultShaderArray
 
-export  plotcontour
+export  plotcontour,
+        compandcenter
 
 include("visualizations.jl")
 include("cone3.jl")
