@@ -8,7 +8,7 @@ using Makie: scatter, linesegments!, Scene, scatter!, lines, arrows!
 using Makie: mesh!, cam3d!, Sphere, Point
 using GeometryTypes: Cylinder
 using RANSAC
-using RANSAC: FittedTranslational, midpoint, contournormal
+using RANSAC: midpoint, contournormal, outwardsnormal
 using StaticArrays
 using CSGBuilding
 using ColorSchemes
