@@ -59,7 +59,9 @@ export  render,
         DefaultShaderArray
 
 export  plotcontour,
-        compandcenter
+        compandcenter,
+        translheatmap,
+        translheatmap!
 
 include("visualizations.jl")
 include("cone3.jl")

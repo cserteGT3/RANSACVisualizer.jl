@@ -52,3 +52,27 @@ function compandcenter(shap)
     arrows!(sc, mi1, mi2, cn1, cn2, arrowcolor=:blue, scale_plot=false)
     sc
 end
+
+function translheatmap!(sc, shap::FittedTranslational, sidelength, dc=1; kwargs...)
+    cont = shap.contour
+    aabb = findAABB(cont)
+    midp = sum(aabb)/2
+    sidel = aabb[2]-aabb[1]
+
+    xr = range(aabb[1][1]-sidel[1]/4, stop=aabb[2][1]+sidel[1]/4, length=sidelength)
+    yr = range(aabb[1][2]-sidel[2]/4, stop=aabb[2][2]+sidel[2]/4, length=sidelength)
+    if dc == 1
+        mm = [RANSAC.impldistance2segment([i,j], shap)[1] for i in xr, j in yr]
+    else
+        mm = [RANSAC.dist2segment([i,j], cont)[1] for i in xr, j in yr]
+    end
+    lines!(sc, cont, linewidth=1.5; kwargs...)
+    heatmap!(sc, collect(xr), collect(yr), mm; kwargs...)
+    leg = colorlegend(sc[end], raw=true, camera=campixel!)
+    vbox(leg, sc)
+end
+
+function translheatmap(shap::FittedTranslational, sidelength, dc=1; kwargs...)
+    sc = Scene()
+    return translheatmap!(sc, shap, sidelength, dc; kwargs...)
+end
