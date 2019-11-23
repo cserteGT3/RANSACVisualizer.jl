@@ -9,6 +9,7 @@ using Makie: mesh!, cam3d!, Sphere, Point
 using GeometryTypes: Cylinder
 using RANSAC
 using RANSAC: midpoint, contournormal, outwardsnormal, segmentnormal
+using RANSAC: AbstractTranslationalSurface
 using StaticArrays
 using CSGBuilding
 using ColorSchemes
