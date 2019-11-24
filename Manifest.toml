@@ -65,7 +65,7 @@ version = "1.1.2"
 
 [[CSGBuilding]]
 deps = ["AbstractTrees", "FileIO", "GeometryTypes", "LinearAlgebra", "Logging", "MeshIO", "Parameters", "RANSAC", "Random", "StaticArrays"]
-git-tree-sha1 = "ad167cb70a9bd207f1e13f165755389d4540d55a"
+git-tree-sha1 = "651840c57aedd110c241d3b60ddf0f4f8c194458"
 repo-rev = "master"
 repo-url = "https://github.com/cserteGT3/CSGBuilding.jl"
 uuid = "a69a8ca4-c74f-409f-8e6c-efe80ff0e05d"
@@ -586,7 +586,7 @@ version = "2.1.1"
 
 [[RANSAC]]
 deps = ["LinearAlgebra", "Logging", "NearestNeighbors", "Parameters", "Random", "RegionTrees", "StaticArrays", "UnionFind"]
-git-tree-sha1 = "be48af70f363491addd48acc7abd0f3fe17ea8b4"
+git-tree-sha1 = "24d58d342171d5d88924c8d75a84dbd3f84375d0"
 repo-rev = "master"
 repo-url = "https://github.com/cserteGT3/RANSAC.jl"
 uuid = "d6bc97e0-a563-11e9-1861-c573f65f3bc3"
