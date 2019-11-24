@@ -7,39 +7,10 @@ uuid = "621f4979-c628-5d54-868e-fcf4e3e8185c"
 version = "0.5.0"
 
 [[AbstractPlotting]]
+deps = ["ColorBrewer", "ColorTypes", "Colors", "Contour", "DocStringExtensions", "FFMPEG", "FileIO", "FixedPointNumbers", "FreeType", "FreeTypeAbstraction", "GeometryTypes", "ImageMagick", "IntervalSets", "LinearAlgebra", "Markdown", "Observables", "Packing", "PlotUtils", "Printf", "Random", "Serialization", "Showoff", "SignedDistanceFields", "SparseArrays", "StaticArrays", "Statistics", "StructArrays", "UnicodeFun"]
 git-tree-sha1 = "ebcbb6a9c25c1d21020b7068d2f796e55d472c74"
 uuid = "537997a7-5e4e-5d89-9595-2241ea00577e"
 version = "0.9.10"
-
-    [AbstractPlotting.deps]
-    ColorBrewer = "a2cac450-b92f-5266-8821-25eda20663c8"
-    ColorTypes = "3da002f7-5984-5a60-b8a6-cbb66c0b333f"
-    Colors = "5ae59095-9a9b-59fe-a467-6f913c188581"
-    Contour = "d38c429a-6771-53c6-b99e-75d170b6e991"
-    DocStringExtensions = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
-    FFMPEG = "c87230d0-a227-11e9-1b43-d7ebe4e7570a"
-    FileIO = "5789e2e9-d7fb-5bc7-8068-2c6fae9b9549"
-    FixedPointNumbers = "53c48c17-4a7d-5ca2-90c5-79b7896eea93"
-    FreeType = "b38be410-82b0-50bf-ab77-7b57e271db43"
-    FreeTypeAbstraction = "663a7486-cb36-511b-a19d-713bb74d65c9"
-    GeometryTypes = "4d00f742-c7ba-57c2-abde-4428a4b178cb"
-    ImageMagick = "6218d12a-5da1-5696-b52f-db25d2ecc6d1"
-    IntervalSets = "8197267c-284f-5f27-9208-e0e47529a953"
-    LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
-    Markdown = "d6f4376e-aef5-505a-96c1-9c027394607a"
-    Observables = "510215fc-4207-5dde-b226-833fc4488ee2"
-    Packing = "19eb6ba3-879d-56ad-ad62-d5c202156566"
-    PlotUtils = "995b91a9-d308-5afd-9ec6-746e21dbc043"
-    Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
-    Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
-    Serialization = "9e88b42a-f829-5b0c-bbe9-9e923198166b"
-    Showoff = "992d4aef-0814-514b-bc4d-f2e9a6c4116f"
-    SignedDistanceFields = "73760f76-fbc4-59ce-8f25-708e95d2df96"
-    SparseArrays = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
-    StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
-    Statistics = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
-    StructArrays = "09ab397b-f2b6-538f-b94a-2f83cf4a842a"
-    UnicodeFun = "1cfade01-22cf-5700-b092-accc4b62d6e1"
 
 [[AbstractTrees]]
 deps = ["Markdown", "Test"]
@@ -93,8 +64,8 @@ uuid = "631607c0-34d2-5d66-819e-eb0f9aa2061a"
 version = "1.1.2"
 
 [[CSGBuilding]]
-deps = ["AbstractTrees", "FileIO", "GeometryTypes", "LinearAlgebra", "Logging", "MeshIO", "Parameters", "Random", "StaticArrays"]
-git-tree-sha1 = "1db597297a30853da0d996318f33c1944c59f22a"
+deps = ["AbstractTrees", "FileIO", "GeometryTypes", "LinearAlgebra", "Logging", "MeshIO", "Parameters", "RANSAC", "Random", "StaticArrays"]
+git-tree-sha1 = "ad167cb70a9bd207f1e13f165755389d4540d55a"
 repo-rev = "master"
 repo-url = "https://github.com/cserteGT3/CSGBuilding.jl"
 uuid = "a69a8ca4-c74f-409f-8e6c-efe80ff0e05d"
@@ -280,9 +251,9 @@ version = "1.1.0"
 
 [[FileIO]]
 deps = ["Pkg"]
-git-tree-sha1 = "351f001a78aa1b7ad2696e386e110b5abd071c71"
+git-tree-sha1 = "6c976460b85527d22d979682222d36767d95e27f"
 uuid = "5789e2e9-d7fb-5bc7-8068-2c6fae9b9549"
-version = "1.0.7"
+version = "1.1.0"
 
 [[FillArrays]]
 deps = ["LinearAlgebra", "Random", "SparseArrays"]
@@ -365,12 +336,6 @@ git-tree-sha1 = "5ea0410ea092ca0e928a663bb581e0d059f6745c"
 uuid = "a09fc81d-aa75-5fe9-8630-4744c3626534"
 version = "0.8.5"
 
-[[ImageDistances]]
-deps = ["ColorVectorSpace", "Colors", "Distances", "FixedPointNumbers", "ImageCore"]
-git-tree-sha1 = "aa69ce81260bcb5e950a5e3b48ccca15447c6d8c"
-uuid = "51556ac3-7006-55f5-8cb3-34580c88182d"
-version = "0.2.4"
-
 [[ImageFiltering]]
 deps = ["CatIndices", "ColorVectorSpace", "Colors", "ComputationalResources", "DataStructures", "FFTViews", "FFTW", "FixedPointNumbers", "ImageCore", "LinearAlgebra", "MappedArrays", "OffsetArrays", "Requires", "StaticArrays", "Statistics", "TiledIteration"]
 git-tree-sha1 = "e7be8c871a1e38cd29d1e978f7bff3feb7079025"
@@ -383,35 +348,11 @@ git-tree-sha1 = "6e1efa8bd5123e18a082c5580c7b8d4a287e1af4"
 uuid = "6218d12a-5da1-5696-b52f-db25d2ecc6d1"
 version = "0.7.5"
 
-[[ImageMetadata]]
-deps = ["AxisArrays", "ColorVectorSpace", "Colors", "FixedPointNumbers", "ImageAxes", "ImageCore", "IndirectArrays"]
-git-tree-sha1 = "4d9ec4bb0fe4bf08c3890cb4f1274c1a63fd31ee"
-uuid = "bc367c6b-8a6b-528e-b4bd-a4b897500b49"
-version = "0.7.2"
-
-[[ImageMorphology]]
-deps = ["Colors", "FixedPointNumbers", "ImageCore"]
-git-tree-sha1 = "2ea6e55a36166321ca735b8eaf74936180e2ad5d"
-uuid = "787d08f9-d448-5407-9aad-5290dd7ab264"
-version = "0.2.4"
-
-[[ImageShow]]
-deps = ["Base64", "ColorTypes", "Colors", "FileIO", "FixedPointNumbers", "ImageCore", "OffsetArrays", "Requires"]
-git-tree-sha1 = "c23323afc82b6b553e6b2244d531e50858ea392c"
-uuid = "4e3cecfd-b093-5904-9786-8bbb286a6a31"
-version = "0.2.0"
-
 [[ImageTransformations]]
 deps = ["AxisAlgorithms", "ColorTypes", "ColorVectorSpace", "Colors", "CoordinateTransformations", "FixedPointNumbers", "IdentityRanges", "ImageCore", "Interpolations", "OffsetArrays", "StaticArrays"]
 git-tree-sha1 = "4cf03fc72d8877d5e58c1c72d176340ad4e28fda"
 uuid = "02fcd773-0e25-5acc-982a-7f6622650795"
 version = "0.8.0"
-
-[[Images]]
-deps = ["AxisArrays", "Base64", "ColorTypes", "ColorVectorSpace", "Colors", "FileIO", "FixedPointNumbers", "Graphics", "ImageAxes", "ImageCore", "ImageDistances", "ImageFiltering", "ImageMetadata", "ImageMorphology", "ImageShow", "ImageTransformations", "IndirectArrays", "MappedArrays", "OffsetArrays", "Reexport", "SparseArrays", "StaticArrays", "Statistics", "StatsBase", "TiledIteration"]
-git-tree-sha1 = "1aae59fc0e34e47dfb111113bb6e9a65d7bafe81"
-uuid = "916415d5-f1e6-5110-898d-aaa5f9f070e0"
-version = "0.18.0"
 
 [[IndirectArrays]]
 deps = ["Compat", "Test"]
@@ -547,6 +488,12 @@ git-tree-sha1 = "2681361e30e0ee97aad617f1a6a728e53179bd15"
 uuid = "86f7a689-2022-50b4-a561-43c23ac3c673"
 version = "0.9.3"
 
+[[NearestNeighbors]]
+deps = ["Distances", "LinearAlgebra", "Mmap", "StaticArrays", "Test"]
+git-tree-sha1 = "f47c5d97cf9a8caefa47e9fa9d99d8fda1a65154"
+uuid = "b8a86587-4115-5ab1-83bc-aa920d37bbce"
+version = "0.4.3"
+
 [[Observables]]
 deps = ["Test"]
 git-tree-sha1 = "dc02cec22747d1d10d9f70d8a1c03432b5bfbcd0"
@@ -638,8 +585,8 @@ uuid = "1fd47b50-473d-5c70-9696-f719f8f3bcdc"
 version = "2.1.1"
 
 [[RANSAC]]
-deps = ["Images", "LinearAlgebra", "Logging", "Parameters", "Random", "RegionTrees", "StaticArrays"]
-git-tree-sha1 = "c2ea25637e114e3072e9f90d6af6003f3ec1b39a"
+deps = ["LinearAlgebra", "Logging", "NearestNeighbors", "Parameters", "Random", "RegionTrees", "StaticArrays", "UnionFind"]
+git-tree-sha1 = "be48af70f363491addd48acc7abd0f3fe17ea8b4"
 repo-rev = "master"
 repo-url = "https://github.com/cserteGT3/RANSAC.jl"
 uuid = "d6bc97e0-a563-11e9-1861-c573f65f3bc3"
@@ -664,12 +611,6 @@ deps = ["Compat"]
 git-tree-sha1 = "cdbbe0f350581296f3a2e3e7a91b214121934407"
 uuid = "c84ed2f1-dad5-54f0-aa8e-dbefe2724439"
 version = "0.3.1"
-
-[[Reactive]]
-deps = ["DataStructures", "Distributed", "Test"]
-git-tree-sha1 = "5862d915387ebb954016f50a88e34f79a9e5fcd2"
-uuid = "a223df75-4e93-5b7c-acf9-bdd599c0f4de"
-version = "0.8.3"
 
 [[RecipesBase]]
 git-tree-sha1 = "7bdce29bc9b2f5660a6e5e64d64d91ec941f6aa2"
@@ -722,13 +663,6 @@ git-tree-sha1 = "e032c9df551fb23c9f98ae1064de074111b7bc39"
 uuid = "992d4aef-0814-514b-bc4d-f2e9a6c4116f"
 version = "0.3.1"
 
-[[SignedDistanceFields]]
-deps = ["LinearAlgebra", "StaticArrays"]
-git-tree-sha1 = "ee6145104348425cdd0c1b3e1fcc75caef955b50"
-repo-rev = "master"
-repo-url = "https://github.com/freemin7/SignedDistanceFields.jl"
-uuid = "d3496432-b0bf-11e9-2fac-939fc1e34577"
-version = "0.1.1"
 [[SignedDistanceFields]]
 deps = ["Random", "Statistics", "Test"]
 git-tree-sha1 = "d263a08ec505853a5ff1c1ebde2070419e3f28e9"
@@ -838,6 +772,12 @@ deps = ["Test"]
 git-tree-sha1 = "63cbbd00217fc9aafedf055b60459c1ae7e01ecc"
 uuid = "1cfade01-22cf-5700-b092-accc4b62d6e1"
 version = "0.4.0"
+
+[[UnionFind]]
+deps = ["Printf", "Test"]
+git-tree-sha1 = "8830ae3d26179ed6fc177335b4c252158192c0e5"
+uuid = "99c6138d-4661-531e-8606-19bf1ec96588"
+version = "0.1.0"
 
 [[VersionParsing]]
 deps = ["Compat"]
