@@ -66,7 +66,7 @@ function showtype(l)
     end
 end
 
-function showbytype!(s, pointcloud, candidateA; kwargs...)
+function showbytype!(s, pointcloud, candidateA, plotleg=true; kwargs...)
     colors_ = []
     texts_ = []
     for i in eachindex(candidateA)
@@ -95,13 +95,17 @@ function showbytype!(s, pointcloud, candidateA; kwargs...)
         end
         scatter!(s, pointcloud.vertices[ind], color = colour; kwargs...)
     end
-    sl = legend(s.plots[2:end], texts_)
-    vbox(s, sl)
+    if plotleg
+        sl = legend(s.plots[2:end], texts_)
+        vbox(s, sl)
+    else
+        return s
+    end
 end
 
-function showbytype(pointcloud, candidateA; kwargs...)
+function showbytype(pointcloud, candidateA, plotleg=true; kwargs...)
     sc = Scene()
-    showbytype!(sc, pointcloud, candidateA; kwargs...)
+    showbytype!(sc, pointcloud, candidateA, plotleg; kwargs...)
 end
 
 function plotshape(shape::FittedShape; kwargs...)
@@ -153,6 +157,11 @@ end
 function plotimplshape!(sc, shape::ImplicitCylinder; scale=(1.,1.), color=(:blue, 0.1))
     fc = FittedCylinder(true, shape.axis, shape.center, shape.radius, true)
     plotshape!(sc, fc; scale=scale, color=color)
+end
+
+function plotimplshape!(sc, shape::ImplicitTranslational; scale=(1.,1.), color=(:blue, 0.1))
+    @warn "Plotting of ImplicitTranslational is not implemented yet!"
+    return sc
 end
 
 function plotimplshape(shape::CSGBuilding.AbstractImplicitSurface; scale=(1.,1.), color=(:blue, 0.1))
