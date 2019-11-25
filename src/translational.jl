@@ -1,10 +1,10 @@
 """
-    plotcontour(shape::FittedTranslational, plotnormals = false, noutw=false)
+    plotcontour(shape, plotnormals = false, noutw=false)
 
-Plot the contour of a `FittedTranslational`.
+Plot the contour of a `ExtractedTranslational`.
 `noutw==false` means that the normals point outwards, otherwise they point where the were fitted.
 """
-function plotcontour(shape::FittedTranslational, plotnormals = false, noutw=false)
+function plotcontour(shape, plotnormals = false, noutw=false)
     segs = shape.contour
 
     sct = lines(segs, scale_plot=false)
@@ -53,7 +53,7 @@ function compandcenter(shap)
     sc
 end
 
-function translheatmap!(sc, shap::FittedTranslational, sidelength, dc=1; kwargs...)
+function translheatmap!(sc, shap, sidelength, dc=1; kwargs...)
     cont = shap.contour
     aabb = findAABB(cont)
     midp = sum(aabb)/2
@@ -63,8 +63,12 @@ function translheatmap!(sc, shap::FittedTranslational, sidelength, dc=1; kwargs.
     yr = range(aabb[1][2]-sidel[2]/4, stop=aabb[2][2]+sidel[2]/4, length=sidelength)
     if dc == 1
         mm = [RANSAC.impldistance2segment([i,j], shap)[1] for i in xr, j in yr]
-    else
+    elseif dc == 2
         mm = [RANSAC.dist2segment([i,j], cont)[1] for i in xr, j in yr]
+    elseif dc == 3
+        mm = [RANSAC.impldistance2segment2([i,j], shap)[1] for i in xr, j in yr]
+    elseif dc == 4
+        mm = [RANSAC.impldistance2segment3([i,j], shap)[1] for i in xr, j in yr]
     end
     lines!(sc, cont, linewidth=1.5; kwargs...)
     heatmap!(sc, collect(xr), collect(yr), mm; kwargs...)
@@ -72,7 +76,7 @@ function translheatmap!(sc, shap::FittedTranslational, sidelength, dc=1; kwargs.
     vbox(leg, sc)
 end
 
-function translheatmap(shap::FittedTranslational, sidelength, dc=1; kwargs...)
+function translheatmap(shap, sidelength, dc=1; kwargs...)
     sc = Scene()
     return translheatmap!(sc, shap, sidelength, dc; kwargs...)
 end
