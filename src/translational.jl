@@ -1,10 +1,10 @@
 """
-    plotcontour(shape, plotnormals = false, noutw=false)
+    plotcontour_old(shape, plotnormals = false, noutw=false)
 
 Plot the contour of a `ExtractedTranslational`.
 `noutw==false` means that the normals point outwards, otherwise they point where the were fitted.
 """
-function plotcontour(shape, plotnormals = false, noutw=false)
+function plotcontour_old(shape, plotnormals = false, noutw=false)
     segs = shape.contour
 
     sct = lines(segs, scale_plot=false)
@@ -18,6 +18,43 @@ function plotcontour(shape, plotnormals = false, noutw=false)
         scatter!(sct, tms, color=:red, scale_plot=false)
         x_ = (x->x[1]).(tms)
         y_ = (x->x[2]).(tms)
+        u_ = (x->x[1]).(tns)
+        v_ = (x->x[2]).(tns)
+        arrows!(sct, x_, y_, u_, v_, scale_plot=false)
+    end
+    sct
+end
+
+"""
+    plotcontour(shape, plotnormals = false, noutw=false)
+
+Plot the contour of a `ExtractedTranslational`.
+`noutw==true` means that the normals point outwards, otherwise they point where the were fitted.
+"""
+function plotcontour(shape, plotnormals = false, noutw=false)
+    function interp(a, b, n)
+        r = collect(range(0, stop=1, length=n+2))
+        deleteat!(r, 1)
+        deleteat!(r, lastindex(r))
+        return [(1-i)*a+i*b for i in r]
+    end
+
+    segs = shape.contour
+
+    sct = lines(segs, scale_plot=false)
+
+    if plotnormals
+        tms = [midpoint(segs, i) for i in eachindex(segs)]
+        midtms = [interp(segs[i], segs[i+1], 1) for i in 1:size(segs,1)-1]
+        tmss = vcat(tms, midtms...)
+        if noutw
+            tns = [dn2shape_outw(tmss[i],shape)[2] for i in eachindex(tmss)]
+        else
+            tns = [dn2shape_contour(tmss[i],shape)[2] for i in eachindex(tmss)]
+        end
+        scatter!(sct, tms, color=:red, scale_plot=false)
+        x_ = (x->x[1]).(tmss)
+        y_ = (x->x[2]).(tmss)
         u_ = (x->x[1]).(tns)
         v_ = (x->x[2]).(tns)
         arrows!(sct, x_, y_, u_, v_, scale_plot=false)
@@ -53,7 +90,7 @@ function compandcenter(shap)
     sc
 end
 
-function translheatmap!(sc, shap, sidelength, dc=1; kwargs...)
+function translheatmap!(sc, shap, sidelength, dc=6; kwargs...)
     cont = shap.contour
     aabb = findAABB(cont)
     midp = sum(aabb)/2
@@ -69,6 +106,10 @@ function translheatmap!(sc, shap, sidelength, dc=1; kwargs...)
         mm = [RANSAC.impldistance2segment2([i,j], shap)[1] for i in xr, j in yr]
     elseif dc == 4
         mm = [RANSAC.impldistance2segment3([i,j], shap)[1] for i in xr, j in yr]
+    elseif dc == 5
+        mm = [RANSAC._dn2shape_outwards([i,j], shap)[1] for i in xr, j in yr]
+    elseif dc == 6
+        mm = [dn2shape_outw([i,j], shap)[1] for i in xr, j in yr]
     end
     lines!(sc, cont, linewidth=1.5; kwargs...)
     heatmap!(sc, collect(xr), collect(yr), mm; kwargs...)
