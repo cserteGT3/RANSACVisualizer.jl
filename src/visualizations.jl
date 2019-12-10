@@ -14,7 +14,7 @@ end
 function showgeometry!(scene, vs, ns; arrow = 0.5)
     vsn = [SVector{3, Float64}(i) for i in vs]
     nsn = [SVector{3, Float64}(i) for i in ns]
-    showgeometry(scene, vsn, nsn, arrow=arrow)
+    showgeometry!(scene, vsn, nsn, arrow=arrow)
 end
 
 function showgeometry!(scene, m; arrow = 0.5)
