@@ -6,7 +6,7 @@ using AbstractPlotting: Point3f0, legend
 using AbstractPlotting
 using Makie: scatter, linesegments!, Scene, scatter!, lines, arrows!
 using Makie: mesh!, cam3d!, Sphere, Point
-using GeometryTypes: Cylinder
+using GeometryTypes: Cylinder, Circle
 using RANSAC
 using RANSAC: midpoint, contournormal, outwardsnormal, segmentnormal
 using RANSAC: AbstractTranslationalSurface
@@ -45,6 +45,7 @@ export  showgeometry,
         plotshape!,
         plotimplshape,
         plotimplshape!,
+        drawcircles!,
         givelargest
 
 export  ConeMesh

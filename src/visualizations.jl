@@ -175,3 +175,14 @@ function givelargest(scoredshapes)
     println("Best: $mind. - $(scoredshapes[mind])")
     return scoredshapes[mind]
 end
+
+"""
+    drawcircles!(sc, points, r; kwargs...)
+
+Use `strokecolor=:blue` or what you want.
+"""
+function drawcircles!(sc, points, r; kwargs...)
+    ps = [Makie.Point2f0(p) for p in points]
+    poly!(sc, [Circle(p, Float32(r/2)) for p in ps], color = (:blue, 0.0), transparency = true, strokewidth=1; kwargs...)
+    sc
+end
