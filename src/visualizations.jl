@@ -7,7 +7,7 @@ function showgeometry!(scene, vs::Array{SVector{3,F},1}, ns::Array{SVector{3,F},
     plns = normalsforplot(vs, ns, arrow)
     scatter!(scene, vs)
     linesegments!(scene, plns, color = :blue)
-    cam3d!(scene)
+    #cam3d!(scene)
     scene
 end
 
