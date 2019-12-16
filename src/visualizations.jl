@@ -3,34 +3,34 @@
 
 Show pointcloud with normals.
 """
-function showgeometry!(scene, vs::Array{SVector{3,F},1}, ns::Array{SVector{3,F},1}; arrow = 0.5) where F
+function showgeometry!(scene, vs::Array{SVector{3,F},1}, ns::Array{SVector{3,F},1}; arrow = 0.5, kwargs...) where F
     plns = normalsforplot(vs, ns, arrow)
-    scatter!(scene, vs)
+    scatter!(scene, vs; kwargs...)
     linesegments!(scene, plns, color = :blue)
     #cam3d!(scene)
     scene
 end
 
-function showgeometry!(scene, vs, ns; arrow = 0.5)
+function showgeometry!(scene, vs, ns; arrow = 0.5, kwargs...)
     vsn = [SVector{3, Float64}(i) for i in vs]
     nsn = [SVector{3, Float64}(i) for i in ns]
-    showgeometry!(scene, vsn, nsn, arrow=arrow)
+    showgeometry!(scene, vsn, nsn; arrow=arrow, kwargs...)
 end
 
-function showgeometry!(scene, m; arrow = 0.5)
+function showgeometry!(scene, m; arrow = 0.5, kwargs...)
     vsn = [SVector{3, Float64}(i) for i in m.vertices]
     nsn = [SVector{3, Float64}(i) for i in m.normals]
-    showgeometry!(scene, vsn, nsn, arrow=arrow)
+    showgeometry!(scene, vsn, nsn; arrow=arrow, kwargs...)
 end
 
-function showgeometry(m; arrow=0.5)
+function showgeometry(m; arrow=0.5, kwargs...)
     s = Scene()
-    showgeometry!(s, m, arrow=arrow)
+    showgeometry!(s, m; arrow=arrow, kwargs...)
 end
 
-function showgeometry(vs, ns; arrow=0.5)
+function showgeometry(vs, ns; arrow=0.5, kwargs...)
     s = Scene()
-    showgeometry!(s, vs, ns, arrow=arrow)
+    showgeometry!(s, vs, ns; arrow=arrow, kwargs...)
 end
 
 function showcandlength(ck)
@@ -39,20 +39,27 @@ function showcandlength(ck)
     end
 end
 
-function showshapes!(s, pointcloud, candidateA; kwargs...)
+function showshapes!(s, pointcloud, candidateA; plotleg=true, kwargs...)
     colscheme = ColorSchemes.gnuplot
     colA = get.(Ref(colscheme), range(0, stop=1, length=(size(candidateA,1)+1)))
     colA = deleteat!(colA, 1)
+    texts_ = []
     for i in 1:length(candidateA)
         ind = candidateA[i].inpoints
+        push!(texts_, RANSAC.strt(candidateA[i].candidate.shape)*"$i")
         scatter!(s, pointcloud.vertices[ind], color = colA[i]; kwargs...)
     end
-    s
+    if plotleg
+        sl = legend(s.plots[2:end], texts_)
+        vbox(s, sl)
+    else
+        return s
+    end
 end
 
-function showshapes(pointcloud, candidateA; kwargs...)
+function showshapes(pointcloud, candidateA; plotleg=true, kwargs...)
     sc = Scene()
-    showshapes!(sc, pointcloud, candidateA; kwargs...)
+    showshapes!(sc, pointcloud, candidateA; plotleg=plotleg, kwargs...)
 end
 
 function getrest(pc)
@@ -75,23 +82,23 @@ function showbytype!(s, pointcloud, candidateA, plotleg=true; kwargs...)
         if c.candidate.shape isa FittedCylinder
             colour = :red
             push!(colors_, :red)
-            push!(texts_, "cylinder")
+            push!(texts_, "Cylinder$i")
         elseif c.candidate.shape isa FittedSphere
             colour = :green
             push!(colors_, :green)
-            push!(texts_, "sphere")
+            push!(texts_, "Sphere$i")
         elseif c.candidate.shape isa FittedPlane
             colour = :orange
             push!(colors_, :orange)
-            push!(texts_, "plane")
+            push!(texts_, "Plane$i")
         elseif c.candidate.shape isa FittedCone
             colour = :blue
             push!(colors_, :blue)
-            push!(texts_, "cone")
+            push!(texts_, "Cone$i")
         elseif c.candidate.shape isa AbstractTranslationalSurface
             colour = :purple
             push!(colors_, :purple)
-            push!(texts_, "translational")
+            push!(texts_, "Translational$i")
         end
         scatter!(s, pointcloud.vertices[ind], color = colour; kwargs...)
     end

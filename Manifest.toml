@@ -71,7 +71,7 @@ version = "1.1.2"
 
 [[CSGBuilding]]
 deps = ["AbstractTrees", "FileIO", "GeometryTypes", "JSON", "LinearAlgebra", "Logging", "MeshIO", "Parameters", "RANSAC", "Random", "StaticArrays"]
-git-tree-sha1 = "d49f4bb1f76f130c41d87fbfe0a6a23e0033a7f3"
+git-tree-sha1 = "b939a64b3bed0e9515543089b8e446e8a078c15b"
 repo-rev = "master"
 repo-url = "https://github.com/cserteGT3/CSGBuilding.jl"
 uuid = "a69a8ca4-c74f-409f-8e6c-efe80ff0e05d"
@@ -540,9 +540,9 @@ uuid = "510215fc-4207-5dde-b226-833fc4488ee2"
 version = "0.2.3"
 
 [[OffsetArrays]]
-git-tree-sha1 = "27f32af4e7b11f5aa9f3cad60b777cd042af149a"
+git-tree-sha1 = "87d0a91efe29352d5caaa271ae3927083c096e33"
 uuid = "6fe1bfb0-de20-5000-8ca7-80f57d26f881"
-version = "0.11.3"
+version = "0.11.4"
 
 [[OpenBLAS_jll]]
 deps = ["Libdl", "Pkg"]
@@ -637,7 +637,7 @@ version = "2.3.1"
 
 [[RANSAC]]
 deps = ["Deldir", "LinearAlgebra", "Logging", "NearestNeighbors", "Parameters", "Random", "RegionTrees", "StaticArrays", "UnionFind"]
-git-tree-sha1 = "280d7f6e1c1bc65a409940b3d0da2ba63ea8df5a"
+git-tree-sha1 = "c92281e933634da084684a811d2e3b2c2f042a6d"
 repo-rev = "master"
 repo-url = "https://github.com/cserteGT3/RANSAC.jl"
 uuid = "d6bc97e0-a563-11e9-1861-c573f65f3bc3"
