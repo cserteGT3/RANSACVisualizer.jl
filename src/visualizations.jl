@@ -200,3 +200,11 @@ function wframe(ps, trs; kwargs...)
 	tm = HomogenousMesh(vrts, fces, [], [], [], [], [])
 	Makie.wireframe(tm; kwargs...)
 end
+
+function plotspantree!(s, points, tree; kwargs...)
+	for (i, obj) in enumerate(tree)
+		p2 = points[obj]
+		lines!(s, (x->x[1]).(p2), (x->x[2]).(p2); kwargs...)
+	end
+	s
+end

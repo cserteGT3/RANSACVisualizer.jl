@@ -4,7 +4,7 @@ using LinearAlgebra
 
 using AbstractPlotting: Point3f0, legend, Face
 using AbstractPlotting
-using Makie: scatter, linesegments!, Scene, scatter!, lines, arrows!, wireframe
+using Makie: scatter, linesegments!, Scene, scatter!, lines, arrows!, wireframe, lines!
 using Makie: mesh!, cam3d!, Sphere, Point
 using GeometryTypes: Cylinder, Circle, HomogenousMesh
 using RANSAC
@@ -47,6 +47,7 @@ export  showgeometry,
         plotimplshape!,
         drawcircles!,
         wframe,
+        plotspantree!,
         givelargest
 
 export  ConeMesh
