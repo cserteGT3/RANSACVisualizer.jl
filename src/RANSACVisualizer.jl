@@ -2,11 +2,11 @@ module RANSACVisualizer
 
 using LinearAlgebra
 
-using AbstractPlotting: Point3f0, legend
+using AbstractPlotting: Point3f0, legend, Face
 using AbstractPlotting
-using Makie: scatter, linesegments!, Scene, scatter!, lines, arrows!
+using Makie: scatter, linesegments!, Scene, scatter!, lines, arrows!, wireframe
 using Makie: mesh!, cam3d!, Sphere, Point
-using GeometryTypes: Cylinder, Circle
+using GeometryTypes: Cylinder, Circle, HomogenousMesh
 using RANSAC
 using RANSAC: midpoint, contournormal, outwardsnormal, segmentnormal
 using RANSAC: AbstractTranslationalSurface
@@ -46,6 +46,7 @@ export  showgeometry,
         plotimplshape,
         plotimplshape!,
         drawcircles!,
+        wframe,
         givelargest
 
 export  ConeMesh

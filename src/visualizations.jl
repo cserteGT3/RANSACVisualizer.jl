@@ -193,3 +193,10 @@ function drawcircles!(sc, points, r; kwargs...)
     poly!(sc, [Circle(p, Float32(r)) for p in ps], color = (:blue, 0.0), transparency = true, strokewidth=1; kwargs...)
     sc
 end
+
+function wframe(ps, trs; kwargs...)
+	vrts = [Point3(i[1], i[2], 0.) for i in ps]
+	fces = [Face{3,Int}(i) for i in trs]
+	tm = HomogenousMesh(vrts, fces, [], [], [], [], [])
+	Makie.wireframe(tm; kwargs...)
+end
