@@ -50,8 +50,14 @@ function showshapes!(s, pointcloud, candidateA; plotleg=true, kwargs...)
         scatter!(s, pointcloud.vertices[ind], color = colA[i]; kwargs...)
     end
     if plotleg
-        sl = legend(s.plots[2:end], texts_)
-        vbox(s, sl)
+        if s.attributes[:show_axis][]
+            sl = legend(s.plots[2:end], texts_)
+        else
+            sl = legend(s.plots, texts_)
+        end
+        sn = Scene(clear=false, show_axis = false, resolution=(1920,1080))
+        sn.center=false
+        return vbox(s, sl, parent=sn)
     else
         return s
     end
@@ -103,8 +109,14 @@ function showbytype!(s, pointcloud, candidateA, plotleg=true; kwargs...)
         scatter!(s, pointcloud.vertices[ind], color = colour; kwargs...)
     end
     if plotleg
-        sl = legend(s.plots[2:end], texts_)
-        vbox(s, sl)
+        if s.attributes[:show_axis][]
+            sl = legend(s.plots[2:end], texts_)
+        else
+            sl = legend(s.plots, texts_)
+        end
+        sn = Scene(clear=false, show_axis = false, resolution=(1920,1080))
+        sn.center=false
+        return vbox(s, sl, parent=sn)
     else
         return s
     end
