@@ -39,7 +39,7 @@ function showcandlength(ck)
     end
 end
 
-function showshapes!(s, pointcloud, candidateA; plotleg=true, kwargs...)
+function showshapes!(s, pointcloud, candidateA; plotleg=true, texts=nothing, kwargs...)
     colscheme = ColorSchemes.gnuplot
     colA = get.(Ref(colscheme), range(0, stop=1, length=(size(candidateA,1)+1)))
     colA = deleteat!(colA, 1)
@@ -49,11 +49,13 @@ function showshapes!(s, pointcloud, candidateA; plotleg=true, kwargs...)
         push!(texts_, RANSAC.strt(candidateA[i].candidate.shape)*"$i")
         scatter!(s, pointcloud.vertices[ind], color = colA[i]; kwargs...)
     end
+
+    usetexts = texts === nothing ? texts_ : texts
     if plotleg
         if s.attributes[:show_axis][]
-            sl = legend(s.plots[2:end], texts_)
+            sl = legend(s.plots[2:end], usetexts)
         else
-            sl = legend(s.plots, texts_)
+            sl = legend(s.plots, usetexts)
         end
         sn = Scene(clear=false, show_axis = false, resolution=(1920,1080))
         sn.center=false
