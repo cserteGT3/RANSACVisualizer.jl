@@ -8,7 +8,7 @@ jobs:
        julia: 1.0
        os: linux
        script:
-         - julis --project=docs/ -e 'using Pkg; Pkg.add("https://github.com/cserteGT3/CSGBuilding.jl")'
+         - julia --project=docs/ -e 'using Pkg; Pkg.add("https://github.com/cserteGT3/CSGBuilding.jl")'
          - julia --project=docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd()));
                                                Pkg.instantiate()'
          - julia --project=docs/ docs/make.jl
