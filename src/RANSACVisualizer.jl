@@ -17,20 +17,7 @@ using Parameters: @unpack
 
 # for cone
 using Makie
-# using AbstractPlotting
-# using FileIO
 using GeometryTypes
-#using Reactive
-
-#=
-# for raytracer
-#using ImageView
-using Images
-using ColorVectorSpace
-using Colors
-#using Dates
-using SignedDistanceFields
-=#
 
 export  showgeometry,
         showgeometry!,
@@ -52,19 +39,6 @@ export  showgeometry,
 
 export  ConeMesh
 
-#=
-export  AbstractCamera,
-        IsometricCamera,
-        PinholeCamera,
-        RayResults,
-        raymarch,
-        los,
-        DefIsoCam,
-        DefPinCam
-
-export  render,
-        DefaultShaderArray
-=#
 export  plotcontour,
         compandcenter,
         translheatmap,
@@ -73,8 +47,5 @@ export  plotcontour,
 include("visualizations.jl")
 include("cone3.jl")
 include("translational.jl")
-#include("raytracer/raymarching.jl")
-#include("raytracer/camera.jl");
-#include("raytracer/render.jl");
 
 end # module
