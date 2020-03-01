@@ -165,31 +165,6 @@ function shiftplane!(sc, p::FittedPlane, dist; kwargs...)
     plotshape!(sc, newp; kwargs...)
 end
 
-function plotimplshape!(sc, shape::ImplicitPlane; scale=(1.,1.), color=(:blue, 0.1))
-    fp = FittedPlane(true, shape.point, shape.normal)
-    plotshape!(sc, fp; scale=scale, color=color)
-end
-
-function plotimplshape!(sc, shape::ImplicitSphere; scale=(1.,1.), color=(:blue, 0.1))
-    fs = FittedSphere(true, shape.center, shape.radius, true)
-    plotshape!(sc, fs; scale=scale, color=color)
-end
-
-function plotimplshape!(sc, shape::ImplicitCylinder; scale=(1.,1.), color=(:blue, 0.1))
-    fc = FittedCylinder(true, shape.axis, shape.center, shape.radius, true)
-    plotshape!(sc, fc; scale=scale, color=color)
-end
-
-function plotimplshape!(sc, shape::ImplicitTranslational; scale=(1.,1.), color=(:blue, 0.1))
-    @warn "Plotting of ImplicitTranslational is not implemented yet!"
-    return sc
-end
-
-function plotimplshape(shape::CSGBuilding.AbstractImplicitSurface; scale=(1.,1.), color=(:blue, 0.1))
-    s = Scene()
-    plotimplshape!(s, shape; scale=scale, color=color)
-end
-
 function givelargest(scoredshapes)
     sizes = [size(s.inpoints, 1) for s in scoredshapes]
     mind = argmax(sizes)

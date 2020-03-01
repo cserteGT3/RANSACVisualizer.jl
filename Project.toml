@@ -5,9 +5,7 @@ version = "0.1.0"
 
 [deps]
 AbstractPlotting = "537997a7-5e4e-5d89-9595-2241ea00577e"
-CSGBuilding = "a69a8ca4-c74f-409f-8e6c-efe80ff0e05d"
 ColorSchemes = "35d6a980-a343-548e-a6ea-1d62b119f2f4"
-Deldir = "64db5801-a3ae-51a7-b7d2-a0a5f0813e47"
 GeometryTypes = "4d00f742-c7ba-57c2-abde-4428a4b178cb"
 LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
 Makie = "ee78f7c6-11fb-53f2-987a-cfe4a2b5a57a"
