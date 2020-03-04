@@ -1,7 +1,9 @@
 """
     showgeometry!(scene, vs, ns; arrow = 0.5)
 
-Show pointcloud with normals.
+Show a pointcloud with normals, defined by the vector of points and according surface normals.
+
+Adds the new cloud to `scene`.
 """
 function showgeometry!(scene, vs::Array{SVector{3,F},1}, ns::Array{SVector{3,F},1}; arrow = 0.5, kwargs...) where F
     plns = normalsforplot(vs, ns, arrow)
@@ -17,17 +19,34 @@ function showgeometry!(scene, vs, ns; arrow = 0.5, kwargs...)
     showgeometry!(scene, vsn, nsn; arrow=arrow, kwargs...)
 end
 
+"""
+    showgeometry!(scene, m; arrow = 0.5)
+
+Show a pointcloud with normals, represented by a `HomogenousMesh` from GeometryTpes.jl.
+
+Adds the new cloud to `scene`.
+"""
 function showgeometry!(scene, m; arrow = 0.5, kwargs...)
-    vsn = [SVector{3, Float64}(i) for i in m.vertices]
-    nsn = [SVector{3, Float64}(i) for i in m.normals]
+    vsn = [SVector{3, Float64}(i) for i in vertices(m)]
+    nsn = [SVector{3, Float64}(i) for i in normals(m)]
     showgeometry!(scene, vsn, nsn; arrow=arrow, kwargs...)
 end
 
+"""
+    showgeometry(m; arrow = 0.5)
+
+Show a pointcloud with normals, represented by a `HomogenousMesh` from GeometryTpes.jl.
+"""
 function showgeometry(m; arrow=0.5, kwargs...)
     s = Scene()
     showgeometry!(s, m; arrow=arrow, kwargs...)
 end
 
+"""
+    showgeometry(vs, ns; arrow = 0.5)
+
+Show a pointcloud with normals, defined by the vector of points and according surface normals.
+"""
 function showgeometry(vs, ns; arrow=0.5, kwargs...)
     s = Scene()
     showgeometry!(s, vs, ns; arrow=arrow, kwargs...)
@@ -39,6 +58,19 @@ function showcandlength(ck)
     end
 end
 
+"""
+    showshapes!(s, pointcloud, candidateA; plotleg=true, texts=nothing, kwargs...)
+
+Plot the candidates and color each one differently.
+
+# Arguments
+- `s::Scene`: Makie scene.
+- `pointcloud::PointCloud`: a pointcloud from RANSAC.jl
+- `candidateA::Vector{ScoredShape}`: an array of primitives.
+- `plotleg::Bool`: plot a legend?
+- `texts::Union{nothing,Vector{String}}`: when `nothing` is passed (and `plotleg==true`), a default legend is generated.
+- `kwargs...`: any keyword argument can be passed to `scatter()` in the function.
+"""
 function showshapes!(s, pointcloud, candidateA; plotleg=true, texts=nothing, kwargs...)
     colscheme = ColorSchemes.gnuplot
     colA = get.(Ref(colscheme), range(0, stop=1, length=(size(candidateA,1)+1)))
@@ -65,6 +97,11 @@ function showshapes!(s, pointcloud, candidateA; plotleg=true, texts=nothing, kwa
     end
 end
 
+"""
+    showshapes(pointcloud, candidateA; plotleg=true, kwargs...)
+
+Plot to a new scene. See [`showshapes!`](@ref).
+"""
 function showshapes(pointcloud, candidateA; plotleg=true, kwargs...)
     sc = Scene()
     showshapes!(sc, pointcloud, candidateA; plotleg=plotleg, kwargs...)
@@ -81,6 +118,18 @@ function showtype(l)
     end
 end
 
+"""
+    showbytype!(s, pointcloud, candidateA, plotleg=true; kwargs...)
+
+Plot the candidates and color them based on their type.
+
+# Arguments
+- `s::Scene`: Makie scene.
+- `pointcloud::PointCloud`: a pointcloud from RANSAC.jl
+- `candidateA::Vector{ScoredShape}`: an array of primitives.
+- `plotleg::Bool`: plot a legend?
+- `kwargs...`: any keyword argument can be passed to `scatter()` in the function.
+"""
 function showbytype!(s, pointcloud, candidateA, plotleg=true; kwargs...)
     colors_ = []
     texts_ = []
@@ -124,6 +173,11 @@ function showbytype!(s, pointcloud, candidateA, plotleg=true; kwargs...)
     end
 end
 
+"""
+    showbytype(pointcloud, candidateA, plotleg=true; kwargs...)
+
+Plot to a new scene. See [`showbytype!`](@ref).
+"""
 function showbytype(pointcloud, candidateA, plotleg=true; kwargs...)
     sc = Scene()
     showbytype!(sc, pointcloud, candidateA, plotleg; kwargs...)

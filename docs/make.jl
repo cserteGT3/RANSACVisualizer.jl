@@ -1,4 +1,4 @@
-using Documenter
+using Documenter, RANSACVisualizer
 
 makedocs(sitename="RANSACVisualizer.jl",
         pages=["Home" => "index.md"])
