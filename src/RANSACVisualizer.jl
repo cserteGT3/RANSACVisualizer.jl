@@ -11,7 +11,6 @@ using RANSAC
 using RANSAC: midpoint, contournormal, outwardsnormal, segmentnormal
 using RANSAC: AbstractTranslationalSurface
 using StaticArrays
-using CSGBuilding
 using ColorSchemes
 using Parameters: @unpack
 
