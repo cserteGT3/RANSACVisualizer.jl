@@ -89,7 +89,7 @@ function showshapes!(s, pointcloud, candidateA; plotleg=true, texts=nothing, kwa
         else
             sl = legend(s.plots, usetexts)
         end
-        sn = Scene(clear=false, show_axis = false, resolution=(1920,1080))
+        sn = Scene(clear=false, show_axis = false)
         sn.center=false
         return vbox(s, sl, parent=sn)
     else
@@ -165,7 +165,7 @@ function showbytype!(s, pointcloud, candidateA, plotleg=true; kwargs...)
         else
             sl = legend(s.plots, texts_)
         end
-        sn = Scene(clear=false, show_axis = false, resolution=(1920,1080))
+        sn = Scene(clear=false, show_axis = false)
         sn.center=false
         return vbox(s, sl, parent=sn)
     else
