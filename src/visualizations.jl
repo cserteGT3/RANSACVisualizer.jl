@@ -1,9 +1,10 @@
 """
-    showgeometry!(scene, vs, ns; arrow = 0.5)
+    showgeometry!(scene, vs, ns; arrow = 0.5, kwargs...)
 
 Show a pointcloud with normals, defined by the vector of points and according surface normals.
 
 Adds the new cloud to `scene`.
+`kwargs...`are passed to `scatter()` in the function.
 """
 function showgeometry!(scene, vs::Array{SVector{3,F},1}, ns::Array{SVector{3,F},1}; arrow = 0.5, kwargs...) where F
     plns = normalsforplot(vs, ns, arrow)
@@ -20,11 +21,12 @@ function showgeometry!(scene, vs, ns; arrow = 0.5, kwargs...)
 end
 
 """
-    showgeometry!(scene, m; arrow = 0.5)
+    showgeometry!(scene, m; arrow = 0.5, kwargs...)
 
 Show a pointcloud with normals, represented by a `HomogenousMesh` from GeometryTpes.jl.
 
 Adds the new cloud to `scene`.
+`kwargs...`are passed to `scatter()` in the function.
 """
 function showgeometry!(scene, m; arrow = 0.5, kwargs...)
     vsn = [SVector{3, Float64}(i) for i in vertices(m)]
@@ -33,9 +35,10 @@ function showgeometry!(scene, m; arrow = 0.5, kwargs...)
 end
 
 """
-    showgeometry(m; arrow = 0.5)
+    showgeometry(m; arrow = 0.5, kwargs...)
 
 Show a pointcloud with normals, represented by a `HomogenousMesh` from GeometryTpes.jl.
+`kwargs...`are passed to `scatter()` in the function.
 """
 function showgeometry(m; arrow=0.5, kwargs...)
     s = Scene()
@@ -43,7 +46,7 @@ function showgeometry(m; arrow=0.5, kwargs...)
 end
 
 """
-    showgeometry(vs, ns; arrow = 0.5)
+    showgeometry(vs, ns; arrow = 0.5, kwargs...)
 
 Show a pointcloud with normals, defined by the vector of points and according surface normals.
 """
