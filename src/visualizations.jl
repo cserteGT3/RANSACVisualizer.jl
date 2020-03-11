@@ -155,10 +155,6 @@ function showbytype!(s, pointcloud, candidateA, plotleg=true; kwargs...)
             colour = :blue
             push!(colors_, :blue)
             push!(texts_, "Cone$i")
-        elseif c.candidate.shape isa AbstractTranslationalSurface
-            colour = :purple
-            push!(colors_, :purple)
-            push!(texts_, "Translational$i")
         end
         scatter!(s, pointcloud.vertices[ind], color = colour; kwargs...)
     end

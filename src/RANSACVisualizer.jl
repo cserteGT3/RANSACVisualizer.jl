@@ -8,8 +8,6 @@ using Makie: scatter, linesegments!, Scene, scatter!, lines, arrows!, wireframe,
 using Makie: mesh!, cam3d!, Sphere, Point
 using GeometryTypes: Cylinder, Circle, HomogenousMesh, vertices, normals
 using RANSAC
-using RANSAC: midpoint, contournormal, outwardsnormal, segmentnormal
-using RANSAC: AbstractTranslationalSurface
 using StaticArrays
 using ColorSchemes
 using Parameters: @unpack
@@ -38,13 +36,7 @@ export  showgeometry,
 
 export  ConeMesh
 
-export  plotcontour,
-        compandcenter,
-        translheatmap,
-        translheatmap!
-
 include("visualizations.jl")
 include("cone3.jl")
-include("translational.jl")
 
 end # module
