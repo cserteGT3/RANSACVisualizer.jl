@@ -1,4 +1,19 @@
 """
+    normalsforplot(verts, norms, arrowsize = 0.5)
+
+Create an array of pair of points for plotting the normals with Makie.
+Only the direction of the normals is presented, their size not.
+
+# Arguments:
+- `arrowsize`: scaling factor for the size of the lines.
+"""
+function normalsforplot(verts, norms, arrowsize = 0.5)
+    @assert size(verts) == size(norms) "They should have the same size."
+    as = arrowsize
+    return [verts[i] => verts[i] + as .*normalize(norms[i]) for i in 1:length(verts) ]
+end
+
+"""
     showgeometry!(scene, vs, ns; arrow = 0.5, kwargs...)
 
 Show a pointcloud with normals, defined by the vector of points and according surface normals.
@@ -7,7 +22,7 @@ Adds the new cloud to `scene`.
 `kwargs...`are passed to `scatter()` in the function.
 """
 function showgeometry!(scene, vs::Array{SVector{3,F},1}, ns::Array{SVector{3,F},1}; arrow = 0.5, kwargs...) where F
-    plns = normalsforplot(vs, ns, arrow)
+    plns = RANSACVisualizer.normalsforplot(vs, ns, arrow)
     scatter!(scene, vs; kwargs...)
     linesegments!(scene, plns, color = :blue)
     #cam3d!(scene)

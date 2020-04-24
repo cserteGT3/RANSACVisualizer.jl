@@ -2,8 +2,9 @@ module RANSACVisualizer
 
 using LinearAlgebra
 
-using AbstractPlotting: Point3f0, legend, Face
-using AbstractPlotting
+using AbstractPlotting: Point3f0, legend
+# using AbstractPlotting: Face
+# using AbstractPlotting
 using Makie: scatter, linesegments!, Scene, scatter!, lines, arrows!, wireframe, lines!
 using Makie: mesh!, cam3d!, Sphere, Point
 using GeometryTypes: Cylinder, Circle, HomogenousMesh, vertices, normals
@@ -13,8 +14,8 @@ using ColorSchemes
 using Parameters: @unpack
 
 # for cone
-using Makie
-using GeometryTypes
+# using Makie
+# using GeometryTypes
 
 export  showgeometry,
         showgeometry!,
@@ -27,16 +28,14 @@ export  showgeometry,
         showbytype!,
         plotshape,
         plotshape!,
-        plotimplshape,
-        plotimplshape!,
         drawcircles!,
         wframe,
         plotspantree!,
         givelargest
 
-export  ConeMesh
+# export  ConeMesh
 
 include("visualizations.jl")
-include("cone3.jl")
+#include("cone3.jl")
 
 end # module
