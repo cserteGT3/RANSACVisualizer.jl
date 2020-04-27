@@ -12,3 +12,8 @@
 This package provides a couple of functions to visualize the result of the RANSAC algorithm.
 It is built top of [Makie.jl](https://github.com/JuliaPlots/Makie.jl) and [RANSAC.jl](https://github.com/cserteGT3/RANSAC.jl).
 Check out the [docs](https://csertegt3.github.io/RANSACVisualizer.jl/dev/) for more.
+
+If it's hard to rotate the screen, because the mouse is too sensitive, use this command (from [issue comment](https://github.com/JuliaPlots/Makie.jl/issues/33#issuecomment-564329940)):
+```julia
+cameracontrols(scene).rotationspeed[] = 0.01f0
+```
