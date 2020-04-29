@@ -5,8 +5,12 @@ In this file I keep track of the changes from release to release.
 ## v0.2.0
 
 At RANSAC.jl I removed some undocumented features that had dependencies I didn't really like.
-This release makes is easier to install thiw two package.
+This release makes is easier to install this two package.
 
+### v0.2.1
+
+Minor changes.
+Making a release, because next RANSAC.jl changes are going to be breaking.
 
 ## v0.1
 
