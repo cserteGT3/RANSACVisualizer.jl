@@ -5,13 +5,12 @@ using LinearAlgebra
 using AbstractPlotting: Point3f0, legend
 # using AbstractPlotting: Face
 # using AbstractPlotting
-using Makie: scatter, linesegments!, Scene, scatter!, lines, arrows!, wireframe, lines!
+using Makie: scatter, linesegments!, Scene, scatter!, lines, arrows!, wireframe, lines!, vbox
 using Makie: mesh!, cam3d!, Sphere, Point
 using GeometryTypes: Cylinder, Circle, HomogenousMesh, vertices, normals
 using RANSAC
 using StaticArrays
 using ColorSchemes
-using Parameters: @unpack
 
 # for cone
 # using Makie

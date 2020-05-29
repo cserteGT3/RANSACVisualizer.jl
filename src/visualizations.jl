@@ -83,8 +83,8 @@ Plot the candidates and color each one differently.
 
 # Arguments
 - `s::Scene`: Makie scene.
-- `pointcloud::PointCloud`: a pointcloud from RANSAC.jl
-- `candidateA::Vector{ScoredShape}`: an array of primitives.
+- `pointcloud::RANSACCloud`: a pointcloud from RANSAC.jl
+- `candidateA::Vector{ExtractedShape}`: an array of primitives.
 - `plotleg::Bool`: plot a legend?
 - `texts::Union{nothing,Vector{String}}`: when `nothing` is passed (and `plotleg==true`), a default legend is generated.
 - `kwargs...`: any keyword argument can be passed to `scatter()` in the function.
@@ -96,7 +96,7 @@ function showshapes!(s, pointcloud, candidateA; plotleg=true, texts=nothing, kwa
     texts_ = []
     for i in 1:length(candidateA)
         ind = candidateA[i].inpoints
-        push!(texts_, RANSAC.strt(candidateA[i].candidate.shape)*"$i")
+        push!(texts_, RANSAC.strt(candidateA[i].shape)*"$i")
         scatter!(s, pointcloud.vertices[ind], color = colA[i]; kwargs...)
     end
 
@@ -132,7 +132,7 @@ end
 
 function showtype(l)
     for t in l
-        println(t.candidate.shape)
+        println(t.shape)
     end
 end
 
@@ -143,8 +143,8 @@ Plot the candidates and color them based on their type.
 
 # Arguments
 - `s::Scene`: Makie scene.
-- `pointcloud::PointCloud`: a pointcloud from RANSAC.jl
-- `candidateA::Vector{ScoredShape}`: an array of primitives.
+- `pointcloud::RANSACCloud`: a pointcloud from RANSAC.jl
+- `candidateA::Vector{ExtractedShape}`: an array of primitives.
 - `plotleg::Bool`: plot a legend?
 - `kwargs...`: any keyword argument can be passed to `scatter()` in the function.
 """
@@ -154,19 +154,19 @@ function showbytype!(s, pointcloud, candidateA, plotleg=true; kwargs...)
     for i in eachindex(candidateA)
         c = candidateA[i]
         ind = c.inpoints
-        if c.candidate.shape isa FittedCylinder
+        if c.shape isa FittedCylinder
             colour = :red
             push!(colors_, :red)
             push!(texts_, "Cylinder$i")
-        elseif c.candidate.shape isa FittedSphere
+        elseif c.shape isa FittedSphere
             colour = :green
             push!(colors_, :green)
             push!(texts_, "Sphere$i")
-        elseif c.candidate.shape isa FittedPlane
+        elseif c.shape isa FittedPlane
             colour = :orange
             push!(colors_, :orange)
             push!(texts_, "Plane$i")
-        elseif c.candidate.shape isa FittedCone
+        elseif c.shape isa FittedCone
             colour = :blue
             push!(colors_, :blue)
             push!(texts_, "Cone$i")

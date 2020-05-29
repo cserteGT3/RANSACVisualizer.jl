@@ -2,6 +2,10 @@
 
 In this file I keep track of the changes from release to release.
 
+## v0.3.0
+
+Compatibility for RANSAC.jl `v0.4.0`. Drop support for earlier releases.
+
 ## v0.2.0
 
 At RANSAC.jl I removed some undocumented features that had dependencies I didn't really like.

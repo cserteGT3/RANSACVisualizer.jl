@@ -164,9 +164,9 @@ uuid = "8ba89e20-285c-5b6f-9357-94700520ee1b"
 
 [[Distributions]]
 deps = ["FillArrays", "LinearAlgebra", "PDMats", "Printf", "QuadGK", "Random", "SpecialFunctions", "Statistics", "StatsBase", "StatsFuns"]
-git-tree-sha1 = "c4ed10355637fcb0725dc6a27060f74df24f13cd"
+git-tree-sha1 = "5ad1c36bff608560df500e93aaeb5b86b4ad45ba"
 uuid = "31c24e10-a181-5473-b8eb-7969acd0382f"
-version = "0.23.2"
+version = "0.23.3"
 
 [[DocStringExtensions]]
 deps = ["LibGit2", "Markdown", "Pkg", "Test"]
@@ -607,11 +607,11 @@ version = "2.3.1"
 
 [[RANSAC]]
 deps = ["ExtractMacro", "JSON", "LinearAlgebra", "Logging", "Random", "RegionTrees", "StaticArrays", "YAML"]
-git-tree-sha1 = "3fbc44e0d9854966823150b49447193cf4f8ec20"
+git-tree-sha1 = "0edc26f17b66975f0c8149a531378cff17af0edb"
 repo-rev = "master"
 repo-url = "https://github.com/cserteGT3/RANSAC.jl"
 uuid = "d6bc97e0-a563-11e9-1861-c573f65f3bc3"
-version = "0.3.1"
+version = "0.4.0"
 
 [[REPL]]
 deps = ["InteractiveUtils", "Markdown", "Sockets"]
