@@ -618,11 +618,11 @@ version = "2.3.1"
 
 [[RANSAC]]
 deps = ["ExtractMacro", "JSON", "LinearAlgebra", "Logging", "Random", "RegionTrees", "StaticArrays", "YAML"]
-git-tree-sha1 = "0edc26f17b66975f0c8149a531378cff17af0edb"
+git-tree-sha1 = "1b16c0ac3dbc31c60ffc71b9babb1d39a07f3d3e"
 repo-rev = "master"
 repo-url = "https://github.com/cserteGT3/RANSAC.jl"
 uuid = "d6bc97e0-a563-11e9-1861-c573f65f3bc3"
-version = "0.4.0"
+version = "0.5.0"
 
 [[REPL]]
 deps = ["InteractiveUtils", "Markdown", "Sockets"]
