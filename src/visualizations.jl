@@ -90,8 +90,7 @@ Plot the candidates and color each one differently.
 - `kwargs...`: any keyword argument can be passed to `scatter()` in the function.
 """
 function showshapes!(s, pointcloud, candidateA; plotleg=true, texts=nothing, kwargs...)
-    colscheme = ColorSchemes.gnuplot
-    colA = get.(Ref(colscheme), range(0, stop=1, length=(size(candidateA,1)+1)))
+    colA = get.(Ref(colorschemes[:hsv]), range(0, stop=1, length=(size(candidateA,1)+1)))
     colA = deleteat!(colA, 1)
     texts_ = []
     for i in 1:length(candidateA)
@@ -149,28 +148,14 @@ Plot the candidates and color them based on their type.
 - `kwargs...`: any keyword argument can be passed to `scatter()` in the function.
 """
 function showbytype!(s, pointcloud, candidateA, plotleg=true; kwargs...)
-    colors_ = []
+    #colors_ = []
     texts_ = []
     for i in eachindex(candidateA)
         c = candidateA[i]
         ind = c.inpoints
-        if c.shape isa FittedCylinder
-            colour = :red
-            push!(colors_, :red)
-            push!(texts_, "Cylinder$i")
-        elseif c.shape isa FittedSphere
-            colour = :green
-            push!(colors_, :green)
-            push!(texts_, "Sphere$i")
-        elseif c.shape isa FittedPlane
-            colour = :orange
-            push!(colors_, :orange)
-            push!(texts_, "Plane$i")
-        elseif c.shape isa FittedCone
-            colour = :blue
-            push!(colors_, :blue)
-            push!(texts_, "Cone$i")
-        end
+        colour = getcolour(c.shape)
+        #push!(colors_, colour)
+        push!(texts_, "$(RANSAC.strt(c.shape))$i")
         scatter!(s, pointcloud.vertices[ind], color = colour; kwargs...)
     end
     if plotleg

@@ -35,6 +35,7 @@ export  showgeometry,
 # export  ConeMesh
 
 include("visualizations.jl")
+include("api.jl")
 #include("cone3.jl")
 
 end # module
