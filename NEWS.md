@@ -2,6 +2,11 @@
 
 In this file I keep track of the changes from release to release.
 
+## v0.4.0
+
+Use Makie recipes as the ecosystem changed.
+A lot of functions have been removed, they are waiting for "reimplementation".
+
 ## v0.3.0
 
 Compatibility for RANSAC.jl `v0.4.0`. Drop support for earlier releases.
