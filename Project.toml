@@ -12,7 +12,7 @@ StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
 
 [compat]
 Makie = "0.13,0.14,0.15"
-RANSAC = "0.4, 0.5"
+RANSAC = "0.4,0.5,0.6"
 julia = "^1"
 
 [extras]
