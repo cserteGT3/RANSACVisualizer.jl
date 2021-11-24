@@ -225,6 +225,8 @@ function givelargest(scoredshapes)
     return scoredshapes[mind]
 end
 
+#=
+
 """
     drawcircles!(sc, points, r; kwargs...)
 
@@ -250,3 +252,4 @@ function plotspantree!(s, points, tree; kwargs...)
 	end
 	s
 end
+=#
