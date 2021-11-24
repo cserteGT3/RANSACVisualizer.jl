@@ -1,3 +1,26 @@
+## Makie recipes
+
+Makie.plottype(::RANSAC.ExtractedShape) = Visualize{<:Tuple{RANSAC.ExtractedShape{T}, RANSACCloud{A,B,C}}} where {T,A,B,C}
+
+function Makie.plot!(plot::Visualize{<:Tuple{RANSAC.ExtractedShape{T}, RANSAC.RANSACCloud{A,B,C}}}) where {T,A,B,C}
+    # retrieve plotted object
+    shape = plot[:shape][]
+    rcloud = plot[:ransaccloud][]
+
+    # RANSACVisualizer.jl attributes
+    pointsize    = plot[:pointsize][]
+    showlegend   = plot[:showlegend][]
+    legendtext   = plot[:legendtext][]
+    colourtype   = plot[:colourtype][]
+
+    color = colourtype === :bytype ? getcolour(shape) : get(colorschemes[:rainbow], rand())
+
+    ind = shape.inpoints
+    Makie.meshscatter!(plot, rcloud.vertices[ind], markersize=pointsize, color=color)
+end
+
+## Old, but working utilities
+
 """
     normalsforplot(verts, norms, arrowsize = 0.5)
 
@@ -13,69 +36,30 @@ function normalsforplot(verts, norms, arrowsize = 0.5)
     return [verts[i] => verts[i] + as .*normalize(norms[i]) for i in 1:length(verts) ]
 end
 
-"""
-    showgeometry!(scene, vs, ns; arrow = 0.5, kwargs...)
-
-Show a pointcloud with normals, defined by the vector of points and according surface normals.
-
-Adds the new cloud to `scene`.
-`kwargs...`are passed to `scatter()` in the function.
-"""
-function showgeometry!(scene, vs::Array{SVector{3,F},1}, ns::Array{SVector{3,F},1}; arrow = 0.5, kwargs...) where F
-    plns = RANSACVisualizer.normalsforplot(vs, ns, arrow)
-    scatter!(scene, vs; kwargs...)
-    linesegments!(scene, plns, color = :blue)
-    #cam3d!(scene)
-    scene
-end
-
-function showgeometry!(scene, vs, ns; arrow = 0.5, kwargs...)
-    vsn = [SVector{3, Float64}(i) for i in vs]
-    nsn = [SVector{3, Float64}(i) for i in ns]
-    showgeometry!(scene, vsn, nsn; arrow=arrow, kwargs...)
-end
-
-"""
-    showgeometry!(scene, m; arrow = 0.5, kwargs...)
-
-Show a pointcloud with normals, represented by a `HomogenousMesh` from GeometryTpes.jl.
-
-Adds the new cloud to `scene`.
-`kwargs...`are passed to `scatter()` in the function.
-"""
-function showgeometry!(scene, m; arrow = 0.5, kwargs...)
-    vsn = [SVector{3, Float64}(i) for i in vertices(m)]
-    nsn = [SVector{3, Float64}(i) for i in normals(m)]
-    showgeometry!(scene, vsn, nsn; arrow=arrow, kwargs...)
-end
-
-"""
-    showgeometry(m; arrow = 0.5, kwargs...)
-
-Show a pointcloud with normals, represented by a `HomogenousMesh` from GeometryTpes.jl.
-`kwargs...`are passed to `scatter()` in the function.
-"""
-function showgeometry(m; arrow=0.5, kwargs...)
-    s = Scene()
-    showgeometry!(s, m; arrow=arrow, kwargs...)
-end
-
-"""
-    showgeometry(vs, ns; arrow = 0.5, kwargs...)
-
-Show a pointcloud with normals, defined by the vector of points and according surface normals.
-"""
-function showgeometry(vs, ns; arrow=0.5, kwargs...)
-    s = Scene()
-    showgeometry!(s, vs, ns; arrow=arrow, kwargs...)
-end
-
 function showcandlength(ck)
     for c in ck
         println("candidate length: $(length(c.inpoints))")
     end
 end
 
+function getrest(pc)
+    return findall(pc.isenabled)
+end
+
+function showtype(l)
+    for t in l
+        println(t.shape)
+    end
+end
+
+function givelargest(scoredshapes)
+    sizes = [size(s.inpoints, 1) for s in scoredshapes]
+    mind = argmax(sizes)
+    println("Best: $mind. - $(scoredshapes[mind])")
+    return scoredshapes[mind]
+end
+
+#=
 """
     showshapes!(s, pointcloud, candidateA; plotleg=true, texts=nothing, kwargs...)
 
@@ -124,16 +108,6 @@ function showshapes(pointcloud, candidateA; plotleg=true, kwargs...)
     showshapes!(sc, pointcloud, candidateA; plotleg=plotleg, kwargs...)
 end
 
-function getrest(pc)
-    return findall(pc.isenabled)
-end
-
-
-function showtype(l)
-    for t in l
-        println(t.shape)
-    end
-end
 
 """
     showbytype!(s, pointcloud, candidateA, plotleg=true; kwargs...)
@@ -218,12 +192,8 @@ function shiftplane!(sc, p::FittedPlane, dist; kwargs...)
     plotshape!(sc, newp; kwargs...)
 end
 
-function givelargest(scoredshapes)
-    sizes = [size(s.inpoints, 1) for s in scoredshapes]
-    mind = argmax(sizes)
-    println("Best: $mind. - $(scoredshapes[mind])")
-    return scoredshapes[mind]
-end
+
+=#
 
 #=
 

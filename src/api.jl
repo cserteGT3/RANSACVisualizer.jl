@@ -7,6 +7,14 @@ Don't fail for any shape, just return a random value.
 """
 getcolour(s::RANSAC.FittedShape) = get(colorschemes[:rainbow], rand())
 
+"""
+    getcolour(s::RANSAC.ExtractedShape)
+
+Just get the colour of the wrapped `RANSAC.FittedShape`.
+"""
+getcolour(s::RANSAC.ExtractedShape) = getcolour(s.shape)
+
+
 # plane orange
 # cylinder red
 # sphere green
